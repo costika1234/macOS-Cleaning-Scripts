@@ -8,14 +8,14 @@ import subprocess
 from datetime import datetime
 
 IMESSAGE_ATTACHMENTS_PATH = '/Users/{0}/Library/Messages/Attachments/'.format(subprocess.check_output(['whoami']).strip())
-DELETE_UNTIL_DATE = '9/01/2018'
+DELETE_UNTIL_DATE = '01/10/2019'
 
 def main():
     print('Cleaning iMessage...')
 
     no_deleted_files = 0
     delete_until_date = datetime.strptime(DELETE_UNTIL_DATE, "%d/%m/%Y")
-    
+
     for root, directories, filenames in os.walk(IMESSAGE_ATTACHMENTS_PATH):
         # Skip the parent directory as we are dealing with files few levels deep.
         if root == IMESSAGE_ATTACHMENTS_PATH:
@@ -39,7 +39,7 @@ def main():
     max_depth_level = 3
     depth_level = 0
 
-    while depth_level < 3:
+    while depth_level < max_depth_level:
         for root, directories, filenames in os.walk(IMESSAGE_ATTACHMENTS_PATH):
             for directory in directories:
                 path_to_dir = os.path.join(root, directory)
